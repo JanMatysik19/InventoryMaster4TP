@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  relationMode = "prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Rack {
+  id      Int     @id @default(autoincrement())
+  code    String  @unique // RAC01
+  shelves Shelf[]
+}
+
+model Shelf {
+  id     Int    @id @default(autoincrement())
+  code   String @unique // SHL01
+  rackId Int
+  rack   Rack   @relation(fields: [rackId], references: [id])
+
+  boxes Box[]
+}
+
+model Box {
+  id      Int    @id @default(autoincrement())
+  code    String @unique // BOX001
+  shelfId Int?
+  shelf   Shelf? @relation(fields: [shelfId], references: [id])
+
+  itemInstances ItemInstance[]
+
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  code String @unique
+
+  items Item[]
+
+  createdAt DateTime @default(now())
+}
+
+model Item {
+  id          Int    @id @default(autoincrement())
+  sku         String // FOC-OM4LSZH
+  description String
+  unit        String @default("pcs")
+
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  featuresCode String
+
+  itemInstances ItemInstance[]
+
+  createdAt DateTime @default(now())
+}
+
+model ItemInstance {
+  id Int @id @default(autoincrement())
+
+  sequenceNumber Int
+
+  itemId Int
+  item   Item @relation(fields: [itemId], references: [id])
+
+  // Lokalizacja zapasu (Albo Box, Albo Shelf)
+  boxId Int?
+  box   Box? @relation(fields: [boxId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([itemId])
+  @@index([boxId])
+}
