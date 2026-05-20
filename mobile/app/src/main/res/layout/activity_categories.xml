@@ -62,7 +62,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/box"
+                android:src="@drawable/category"
                 app:layout_constraintStart_toStartOf="parent"
                 app:tint="?attr/colorOnPrimary" />
 
@@ -72,7 +72,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="105dp"
                 android:layout_marginTop="25dp"
-                android:text="Dodaj pudełko"
+                android:text="Dodaj kategorię"
                 android:textAlignment="viewStart"
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="22sp"
@@ -107,8 +107,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:ems="10"
-                android:hint="Szukaj po numerze"
-                android:inputType="number"
+                android:hint="Szukaj po nazwie"
+                android:inputType="text|textNoSuggestions"
                 android:textColor="?attr/colorOnBackground" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -129,7 +129,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pudełka"
+            android:text="Kategorie"
             android:textColor="?attr/colorOnBackground"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -143,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="(30)"
+            android:text="(5)"
             android:textColor="@color/gray"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -254,7 +254,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/gray" />
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/menuCategoriesTv"
@@ -263,7 +263,7 @@
                     android:layout_marginTop="43dp"
                     android:text="Kategorie"
                     android:textAlignment="center"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -293,7 +293,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/gray" />
 
                 <TextView
                     android:id="@+id/menuStructureTv"
@@ -302,7 +302,7 @@
                     android:layout_marginTop="43dp"
                     android:text="Struktura"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
