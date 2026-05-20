@@ -4,8 +4,8 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider     = "prisma-client"
-  output       = "../src/generated/prisma"
+  provider     = "prisma-client-js"
+  // output       = "../src/generated/prisma"
   relationMode = "prisma"
 }
 
@@ -13,26 +13,10 @@ datasource db {
   provider = "mysql"
 }
 
-model Rack {
-  id      Int     @id @default(autoincrement())
-  code    String  @unique // RAC01
-  shelves Shelf[]
-}
-
-model Shelf {
-  id     Int    @id @default(autoincrement())
-  code   String @unique // SHL01
-  rackId Int
-  rack   Rack   @relation(fields: [rackId], references: [id])
-
-  boxes Box[]
-}
 
 model Box {
   id      Int    @id @default(autoincrement())
   code    String @unique // BOX001
-  shelfId Int?
-  shelf   Shelf? @relation(fields: [shelfId], references: [id])
 
   itemInstances ItemInstance[]
 
@@ -72,7 +56,6 @@ model ItemInstance {
   itemId Int
   item   Item @relation(fields: [itemId], references: [id])
 
-  // Lokalizacja zapasu (Albo Box, Albo Shelf)
   boxId Int?
   box   Box? @relation(fields: [boxId], references: [id])
 

@@ -3,20 +3,15 @@ import { prisma } from "@/database/prisma.client";
 export const fetchMany = async ({
   page,
   limit,
-  shelfId,
 }: {
   page: number;
   limit: number;
-  shelfId?: number;
 }) => {
   const skip = (page - 1) * limit;
   return {
     data: await prisma.box.findMany({
       skip,
       take: limit,
-      where: {
-        shelfId,
-      },
     }),
     total: Math.ceil((await prisma.box.count()) / limit),
   };
@@ -30,7 +25,7 @@ export const fetchOne = async ({ id }: { id: number }) => {
   });
 };
 
-export const insertOne = async ({ shelfId }: { shelfId?: number }) => {
+export const insertOne = async () => {
   const lastId = await prisma.box.aggregate({
     _max: {
       id: true,
@@ -40,7 +35,6 @@ export const insertOne = async ({ shelfId }: { shelfId?: number }) => {
 
   return await prisma.box.create({
     data: {
-      shelfId,
       code,
     },
   });

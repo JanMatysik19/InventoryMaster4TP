@@ -1,6 +1,6 @@
-import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { env } from "prisma/config";
+import { PrismaClient } from "@prisma/client";
 
 const adapter = new PrismaMariaDb({
   host: env("DATABASE_HOST"),
@@ -8,6 +8,8 @@ const adapter = new PrismaMariaDb({
   user: env("DATABASE_USER"),
   password: env("DATABASE_PASSWORD"),
   database: env("DATABASE_NAME"),
-  connectionLimit: 5,
+  connectionLimit: 1,
 });
-export const prisma = new PrismaClient({ adapter });
+
+const globalORM = new PrismaClient({ adapter });
+export const prisma = globalORM;
