@@ -23,27 +23,72 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Start"
+            android:layout_marginBottom="20dp"
+            android:text="Struktura"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="28sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
         <androidx.cardview.widget.CardView
-            android:id="@+id/mainSearchCv"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/structureAddCv"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:cardBackgroundColor="?attr/colorPrimary"
             app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mainTv">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/structureAddIv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="?attr/colorOnPrimary" />
+
+            <TextView
+                android:id="@+id/structureAddTv"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="105dp"
+                android:layout_marginTop="25dp"
+                android:text="Dodaj pudełko"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/structureSearchCv"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/structureAddCv">
 
             <ImageView
                 android:id="@+id/structureSearchIv"
@@ -52,7 +97,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/search"
+                android:src="@drawable/feature_search"
                 app:tint="?attr/colorPrimary" />
 
             <EditText
@@ -63,125 +108,63 @@
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:ems="10"
-                android:hint="Szukaj artykułów"
+                android:hint="Szukaj po numerze"
                 android:inputType="text"
                 android:textColor="?attr/colorOnBackground" />
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardBackgroundColor="?attr/colorPrimary"
-            app:cardCornerRadius="10dp">
-
-            <ImageView
-                android:id="@+id/structureAddIv"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/inventory"
-                app:layout_constraintStart_toStartOf="parent"
-                app:tint="?attr/colorOnPrimary" />
-
-            <TextView
-                android:id="@+id/structureAddTv"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="105dp"
-                android:layout_marginTop="25dp"
-                android:text="Dodaj artykuł"
-                android:textAlignment="viewStart"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pudełka"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_width="6dp"
+            android:layout_height="wrap_content" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:cardBackgroundColor="?attr/cardBackgroundColor"
-            app:cardCornerRadius="10dp">
+        <TextView
+            android:id="@+id/structureNumberTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="(30)"
+            android:textColor="@color/gray"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/mainCategoryIv"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/category"
-                app:layout_constraintStart_toStartOf="parent"
-                app:tint="?attr/colorPrimary" />
-
-            <TextView
-                android:id="@+id/mainCategoryTv"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="105dp"
-                android:layout_marginTop="25dp"
-                android:text="Dodaj kategorię"
-                android:textAlignment="viewStart"
-                android:textColor="?attr/colorOnBackground"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </androidx.cardview.widget.CardView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardBackgroundColor="?attr/cardBackgroundColor"
-            app:cardCornerRadius="10dp">
-
-            <ImageView
-                android:id="@+id/mainBoxIv"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/box"
-                app:layout_constraintStart_toStartOf="parent"
-                app:tint="?attr/colorPrimary" />
-
-            <TextView
-                android:id="@+id/mainBoxTv"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="105dp"
-                android:layout_marginTop="25dp"
-                android:text="Dodaj pudelko"
-                android:textAlignment="viewStart"
-                android:textColor="?attr/colorOnBackground"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/structureMenuCl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mainMenuCl"
+        android:id="@+id/structureMenuCl"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="?attr/cardBackgroundColor"
@@ -233,7 +216,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/gray" />
 
                 <TextView
                     android:id="@+id/menuStartTv"
@@ -242,7 +225,7 @@
                     android:layout_marginTop="43dp"
                     android:text="Start"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -311,7 +294,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/gray" />
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/menuStructureTv"
@@ -320,7 +303,7 @@
                     android:layout_marginTop="43dp"
                     android:text="Struktura"
                     android:textAlignment="center"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
