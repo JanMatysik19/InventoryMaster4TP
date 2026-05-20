@@ -7,7 +7,7 @@
     android:layout_marginBottom="10dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/boxCv"
+        android:id="@+id/universalCv"
         android:layout_width="0dp"
         android:layout_height="45dp"
         app:cardBackgroundColor="?attr/cardBackgroundColor"
@@ -28,11 +28,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/boxCodeTv"
+                android:id="@+id/universalLabelTv"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                android:text="BOX001"
+                android:text="ITEM001"
                 android:textColor="?attr/colorOnBackground"
                 android:textSize="25sp"
                 android:textStyle="bold"

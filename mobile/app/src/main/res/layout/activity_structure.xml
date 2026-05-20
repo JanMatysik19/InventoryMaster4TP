@@ -152,6 +152,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/structureRv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
@@ -164,7 +165,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:itemCount="300"
-        tools:listitem="@layout/recycler_box" />
+        tools:listitem="@layout/recycler_universal" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/structureMenuCl"

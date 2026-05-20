@@ -151,6 +151,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesRv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
@@ -160,7 +161,9 @@
         app:layout_constraintBottom_toTopOf="@+id/categoriesMenuCl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:itemCount="30"
+        tools:listitem="@layout/recycler_universal" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/categoriesMenuCl"
