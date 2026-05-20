@@ -109,7 +109,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:ems="10"
-                android:hint="Szukaj po numerze"
+                android:hint="Szukaj właściowości"
                 android:inputType="text"
                 android:textColor="?attr/colorOnBackground" />
         </androidx.cardview.widget.CardView>

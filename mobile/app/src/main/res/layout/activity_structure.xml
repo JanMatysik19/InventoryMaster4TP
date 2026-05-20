@@ -109,7 +109,7 @@
                 android:background="@null"
                 android:ems="10"
                 android:hint="Szukaj po numerze"
-                android:inputType="text"
+                android:inputType="number"
                 android:textColor="?attr/colorOnBackground" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
