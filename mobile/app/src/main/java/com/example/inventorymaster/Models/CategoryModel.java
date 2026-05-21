@@ -22,15 +22,17 @@ public class CategoryModel {
 
     public void getCategories(Consumer<List<Category>> handler) {
         final var call = service.getCategories();
-        call.enqueue(new Callback<>() {
+        call.enqueue(new Callback<CategoryResponse.GET>() {
             @Override
             public void onResponse(Call<CategoryResponse.GET> call, Response<CategoryResponse.GET> response) {
+                android.util.Log.d("CATEGORY MODEL", "Response code: " + response.code());
                 if(!response.isSuccessful() || response.body() == null) {
                     httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
                     return;
                 }
 
                 final var categories = response.body().getCategories();
+                android.util.Log.d("CATEGORY MODEL", "Parsed " + categories.size() + " categories");
                 if(categories.isEmpty()) {
                     httpClient.errorHandle(HttpClient.NO_RESULTS_FOUND);
                     return;
@@ -41,7 +43,8 @@ public class CategoryModel {
 
             @Override
             public void onFailure(Call<CategoryResponse.GET> call, Throwable t) {
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE);
+                android.util.Log.e("CATEGORY MODEL", "Network error", t);
+                httpClient.errorHandle(HttpClient.OTHER_ISSUE + " (" + t.getMessage() + ")");
             }
         });
     }

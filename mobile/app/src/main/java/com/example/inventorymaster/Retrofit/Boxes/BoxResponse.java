@@ -7,22 +7,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoxResponse {
-    public class GET {
+    public static class Many {
         @SerializedName("items")
-        private List<Item> items;
+        private List<BoxItem> items;
+
+        @SerializedName("total")
+        private int total;
 
         public List<Box> getBoxes() {
             final List<Box> boxes = new ArrayList<>();
+            if (items == null) return boxes;
 
-            for(var item : items) boxes.add(new Box(item.id, item.code));
+            for(BoxItem item : items) {
+                boxes.add(new Box(item.id, item.code));
+            }
             return boxes;
         }
 
-        public class Item {
-            @SerializedName("id")
-            public int id;
-            @SerializedName("code")
-            public String code;
+        public int getTotal() {
+            return total;
         }
+    }
+
+    public static class One extends BoxItem {
+        public Box getBox() {
+            return new Box(id, code);
+        }
+    }
+
+    public static class BoxItem {
+        @SerializedName("id")
+        public int id;
+        @SerializedName("code")
+        public String code;
+        @SerializedName("createdAt")
+        public String createdAt;
     }
 }
