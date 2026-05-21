@@ -5,5 +5,5 @@ import retrofit2.http.GET;
 
 public interface BoxService {
     @GET("boxes")
-    Call<BoxResponse> getBoxes();
+    Call<BoxResponse.GET> getBoxes();
 }

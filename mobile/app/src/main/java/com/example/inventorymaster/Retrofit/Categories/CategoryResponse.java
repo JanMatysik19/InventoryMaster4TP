@@ -1,21 +1,21 @@
-package com.example.inventorymaster.Retrofit.Boxes;
+package com.example.inventorymaster.Retrofit.Categories;
 
-import com.example.inventorymaster.DataModels.Box;
+import com.example.inventorymaster.DataModels.Category;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoxResponse {
+public class CategoryResponse {
     public class GET {
         @SerializedName("items")
         private List<Item> items;
 
-        public List<Box> getBoxes() {
-            final List<Box> boxes = new ArrayList<>();
+        public List<Category> getCategories() {
+            final List<Category> categories = new ArrayList<>();
 
-            for(var item : items) boxes.add(new Box(item.id, item.code));
-            return boxes;
+            for(var item : items) categories.add(new Category(item.id, item.code));
+            return categories;
         }
 
         public class Item {
