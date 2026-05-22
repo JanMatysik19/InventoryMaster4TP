@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 
 import com.example.inventorymaster.Retrofit.Boxes.BoxResponse;
 import com.example.inventorymaster.Retrofit.Boxes.BoxService;
-import com.example.inventorymaster.Utils.HttpClient;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,14 +20,14 @@ public class BoxModelTest {
 
     @Before
     public void setUp() {
-        HttpClient mockHttpClient = mock(HttpClient.class);
+        HttpClientModel mockHttpClientModel = mock(HttpClientModel.class);
         mockBoxService = mock(BoxService.class);
         mockCall = mock(Call.class);
 
-        when(mockHttpClient.createService(BoxService.class)).thenReturn(mockBoxService);
+        when(mockHttpClientModel.createService(BoxService.class)).thenReturn(mockBoxService);
         when(mockBoxService.getBoxes()).thenReturn(mockCall);
 
-        boxModel = new BoxModel(mockHttpClient);
+        boxModel = new BoxModel(mockHttpClientModel);
     }
 
     @Test

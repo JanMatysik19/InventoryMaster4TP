@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import com.example.inventorymaster.DataModels.Box;
 import com.example.inventorymaster.Retrofit.Boxes.BoxResponse;
 import com.example.inventorymaster.Retrofit.Boxes.BoxService;
-import com.example.inventorymaster.Utils.HttpClient;
 
 import org.jspecify.annotations.Nullable;
 
@@ -18,10 +17,10 @@ import retrofit2.Response;
 
 public class BoxModel {
     private BoxService service;
-    private HttpClient httpClient;
-    public BoxModel(HttpClient httpClient) {
-        this.httpClient = httpClient;
-        service = httpClient.createService(BoxService.class);
+    private HttpClientModel httpClientModel;
+    public BoxModel(HttpClientModel httpClientModel) {
+        this.httpClientModel = httpClientModel;
+        service = httpClientModel.createService(BoxService.class);
     }
 
     public void getBoxes(Consumer<List<@Nullable Box>> handler) {
@@ -30,14 +29,14 @@ public class BoxModel {
             @Override
             public void onResponse(@NonNull Call<BoxResponse.Many> call, @NonNull Response<BoxResponse.Many> response) {
                 if(!response.isSuccessful() || response.body() == null) {
-                    httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
+                    httpClientModel.errorHandle(HttpClientModel.UNSUCCESSFUL_REQUEST);
                     handler.accept(null);
                     return;
                 }
 
                 final var result = response.body().getBoxes();
                 if(result.isEmpty()) {
-                    httpClient.errorHandle(HttpClient.NO_RESULTS_FOUND);
+                    httpClientModel.errorHandle(HttpClientModel.NO_RESULTS_FOUND);
                     return;
                 }
 
@@ -46,7 +45,7 @@ public class BoxModel {
 
             @Override
             public void onFailure(@NonNull Call<BoxResponse.Many> call, @NonNull Throwable t) {
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE);
+                httpClientModel.errorHandle(HttpClientModel.OTHER_ISSUE);
                 handler.accept(null);
             }
         });
@@ -58,13 +57,13 @@ public class BoxModel {
             @Override
             public void onResponse(@NonNull Call<BoxResponse.One> call, @NonNull Response<BoxResponse.One> response) {
                 if(response.code() == 404) { // Not Found
-                    httpClient.errorHandle(HttpClient.NO_RESULTS_FOUND);
+                    httpClientModel.errorHandle(HttpClientModel.NO_RESULTS_FOUND);
                     handler.accept(null);
                     return;
                 }
 
                 if(!response.isSuccessful() || response.body() == null) {
-                    httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
+                    httpClientModel.errorHandle(HttpClientModel.UNSUCCESSFUL_REQUEST);
                     handler.accept(null);
                     return;
                 }
@@ -76,7 +75,7 @@ public class BoxModel {
 
             @Override
             public void onFailure(@NonNull Call<BoxResponse.One> call, @NonNull Throwable t) {
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE);
+                httpClientModel.errorHandle(HttpClientModel.OTHER_ISSUE);
                 handler.accept(null);
             }
         });
@@ -88,7 +87,7 @@ public class BoxModel {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if(!response.isSuccessful()) {
-                    httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
+                    httpClientModel.errorHandle(HttpClientModel.UNSUCCESSFUL_REQUEST);
                     handler.accept(null);
                     return;
                 }
@@ -98,7 +97,7 @@ public class BoxModel {
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE);
+                httpClientModel.errorHandle(HttpClientModel.OTHER_ISSUE);
                 handler.accept(null);
             }
         });
@@ -110,7 +109,7 @@ public class BoxModel {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if(!response.isSuccessful()) {
-                    httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
+                    httpClientModel.errorHandle(HttpClientModel.UNSUCCESSFUL_REQUEST);
                     handler.accept(null);
                     return;
                 }
@@ -120,7 +119,7 @@ public class BoxModel {
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE);
+                httpClientModel.errorHandle(HttpClientModel.OTHER_ISSUE);
                 handler.accept(null);
             }
         });

@@ -3,7 +3,6 @@ package com.example.inventorymaster.Models;
 import com.example.inventorymaster.DataModels.Category;
 import com.example.inventorymaster.Retrofit.Categories.CategoryResponse;
 import com.example.inventorymaster.Retrofit.Categories.CategoryService;
-import com.example.inventorymaster.Utils.HttpClient;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -14,10 +13,10 @@ import retrofit2.Response;
 
 public class CategoryModel {
     private CategoryService service;
-    private HttpClient httpClient;
-    public CategoryModel(HttpClient httpClient) {
-        this.httpClient = httpClient;
-        service = httpClient.createService(CategoryService.class);
+    private HttpClientModel httpClientModel;
+    public CategoryModel(HttpClientModel httpClientModel) {
+        this.httpClientModel = httpClientModel;
+        service = httpClientModel.createService(CategoryService.class);
     }
 
     public void getCategories(Consumer<List<Category>> handler) {
@@ -27,14 +26,14 @@ public class CategoryModel {
             public void onResponse(Call<CategoryResponse.GET> call, Response<CategoryResponse.GET> response) {
                 android.util.Log.d("CATEGORY MODEL", "Response code: " + response.code());
                 if(!response.isSuccessful() || response.body() == null) {
-                    httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
+                    httpClientModel.errorHandle(HttpClientModel.UNSUCCESSFUL_REQUEST);
                     return;
                 }
 
                 final var categories = response.body().getCategories();
                 android.util.Log.d("CATEGORY MODEL", "Parsed " + categories.size() + " categories");
                 if(categories.isEmpty()) {
-                    httpClient.errorHandle(HttpClient.NO_RESULTS_FOUND);
+                    httpClientModel.errorHandle(HttpClientModel.NO_RESULTS_FOUND);
                     return;
                 }
 
@@ -44,7 +43,7 @@ public class CategoryModel {
             @Override
             public void onFailure(Call<CategoryResponse.GET> call, Throwable t) {
                 android.util.Log.e("CATEGORY MODEL", "Network error", t);
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE + " (" + t.getMessage() + ")");
+                httpClientModel.errorHandle(HttpClientModel.OTHER_ISSUE + " (" + t.getMessage() + ")");
             }
         });
     }
@@ -55,7 +54,7 @@ public class CategoryModel {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(!response.isSuccessful()) {
-                    httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
+                    httpClientModel.errorHandle(HttpClientModel.UNSUCCESSFUL_REQUEST);
                     return;
                 }
 
@@ -64,7 +63,7 @@ public class CategoryModel {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE);
+                httpClientModel.errorHandle(HttpClientModel.OTHER_ISSUE);
             }
         });
     }
@@ -75,7 +74,7 @@ public class CategoryModel {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(!response.isSuccessful()) {
-                    httpClient.errorHandle(HttpClient.UNSUCCESSFUL_REQUEST);
+                    httpClientModel.errorHandle(HttpClientModel.UNSUCCESSFUL_REQUEST);
                     return;
                 }
 
@@ -84,7 +83,7 @@ public class CategoryModel {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                httpClient.errorHandle(HttpClient.OTHER_ISSUE);
+                httpClientModel.errorHandle(HttpClientModel.OTHER_ISSUE);
             }
         });
     }

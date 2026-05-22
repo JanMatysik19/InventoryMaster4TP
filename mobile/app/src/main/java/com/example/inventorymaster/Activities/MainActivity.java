@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.inventorymaster.Models.BoxModel;
 import com.example.inventorymaster.Models.CategoryModel;
 import com.example.inventorymaster.R;
-import com.example.inventorymaster.Utils.HttpClient;
+import com.example.inventorymaster.Models.HttpClientModel;
 
 public class MainActivity extends AppCompatActivity {
     private LayoutInflater inflater;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigateTo(R.layout.activity_start);
 
-        final var httpClient = new HttpClient();
+        final var httpClient = new HttpClientModel();
         final var boxModel = new BoxModel(httpClient);
         final var categoryModel = new CategoryModel(httpClient);
 

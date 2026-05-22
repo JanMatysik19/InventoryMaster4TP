@@ -1,4 +1,4 @@
-package com.example.inventorymaster.Utils;
+package com.example.inventorymaster.Models;
 
 import android.util.Log;
 
@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HttpClient {
+public class HttpClientModel {
     public static final String API_URL = BuildConfig.API_URL;
     public static final String UNSUCCESSFUL_REQUEST = "Zapytanie do API nie powiodło się";
     public static final String NO_RESULTS_FOUND = "Brak wyników";
@@ -16,7 +16,7 @@ public class HttpClient {
     private Consumer<String> errorHandler;
     public final Retrofit retrofit;
 
-    public HttpClient() {
+    public HttpClientModel() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
