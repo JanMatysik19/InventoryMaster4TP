@@ -64,10 +64,10 @@ public class NavigationController {
     }
 
     public enum Page {
-        START(R.layout.activity_start, R.id.menuStartCv, R.id.menuStartIv, R.id.menuStartTv),
-        STRUCTURE(R.layout.activity_structure, R.id.menuStructureCv, R.id.menuStructureIv, R.id.menuStructureTv),
-        ITEMS(R.layout.activity_items, R.id.menuItemsCv, R.id.menuItemsIv, R.id.menuItemsTv),
-        CATEGORIES(R.layout.activity_categories, R.id.menuCategoriesCv, R.id.menuCategoriesIv, R.id.menuCategoriesTv);
+        START(R.layout.page_start, R.id.menuStartCv, R.id.menuStartIv, R.id.menuStartTv),
+        STRUCTURE(R.layout.page_structure, R.id.menuStructureCv, R.id.menuStructureIv, R.id.menuStructureTv),
+        ITEMS(R.layout.page_items, R.id.menuItemsCv, R.id.menuItemsIv, R.id.menuItemsTv),
+        CATEGORIES(R.layout.page_categories, R.id.menuCategoriesCv, R.id.menuCategoriesIv, R.id.menuCategoriesTv);
 
         private final int layoutR;
         private final int cardId;

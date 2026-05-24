@@ -8,13 +8,11 @@ export const boxesRoutes = new Elysia({ prefix: "/boxes" })
     async ({ query }) => {
       const page = Number(query.page) || 1;
       const limit = Number(query.limit) || 30;
-
-      const shelfId = query.shelfId;
+      const number = 
 
       const result = await boxesService.getMany({
         page,
         limit,
-        shelfId,
       });
 
       return {
@@ -67,22 +65,5 @@ export const boxesRoutes = new Elysia({ prefix: "/boxes" })
     },
     {
       params: schemas.delete.box.params,
-    },
-  )
-
-  .patch(
-    "/:id",
-    async ({ params, body, status }) => {
-      const id = params.id;
-      const shelfId = body.shelfId;
-
-      const result = await boxesService.moveOne({ id, shelfId });
-      if (!result) return status("Not Found");
-
-      return result;
-    },
-    {
-      params: schemas.patch.box.params,
-      body: schemas.patch.box.body,
     },
   );
