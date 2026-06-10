@@ -9,6 +9,7 @@ export const schemas = {
           limit: t.Optional(t.Numeric({ minimum: 1, default: 30 })),
           itemId: t.Optional(t.Numeric({ minimum: 1 })),
           boxId: t.Optional(t.Numeric({ minimum: 1 })),
+          sequenceNumber: t.Optional(t.Numeric({ minimum: 1 })),
         }),
       ),
     },

@@ -5,23 +5,28 @@ export const fetchMany = async ({
   limit,
   itemId,
   boxId,
+  sequenceNumber,
 }: {
   page: number;
   limit: number;
   itemId?: number;
   boxId?: number;
+  sequenceNumber?: number;
 }) => {
   const skip = (page - 1) * limit;
+  const where = {
+    itemId,
+    boxId,
+    sequenceNumber,
+  };
+
   return {
     data: await prisma.itemInstance.findMany({
       skip,
       take: limit,
-      where: {
-        itemId,
-        boxId,
-      },
+      where
     }),
-    total: Math.ceil((await prisma.itemInstance.count()) / limit),
+    total: Math.ceil((await prisma.itemInstance.count({ where })) / limit),
   };
 };
 
@@ -45,10 +50,10 @@ export const insertOne = async ({
       itemId,
     },
     _max: {
-      id: true,
+      sequenceNumber: true,
     },
   });
-  const sequenceNumber = (lastId._max.id || 0) + 1;
+  const sequenceNumber = (lastId._max.sequenceNumber || 0) + 1;
 
   return await prisma.itemInstance.create({
     data: {
@@ -83,6 +88,15 @@ export const updateOneLocation = async ({
     },
     data: {
       boxId,
+    },
+  });
+};
+
+export const fetchTotalItemInstances = async ({itemId, sequenceNumber}: { itemId?: number; sequenceNumber?: number; }) => {
+  return await prisma.itemInstance.count({
+    where: {
+      itemId,
+      sequenceNumber,
     },
   });
 };

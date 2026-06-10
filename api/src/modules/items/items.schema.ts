@@ -6,9 +6,8 @@ export const schemas = {
       query: t.Optional(
         t.Object({
           page: t.Optional(t.Numeric({ minimum: 1, default: 1 })),
-          limit: t.Optional(t.Numeric({ minimum: 1, default: 30 })),
+          limit: t.Optional(t.Numeric({ minimum: 1, default: 5 })),
           search: t.Optional(t.String()),
-          category: t.Optional(t.String()),
         }),
       ),
     },
@@ -23,10 +22,9 @@ export const schemas = {
   post: {
     item: {
       body: t.Object({
-        unit: t.Optional(t.String()),
-        category: t.String(),
         featuresCode: t.String(),
         description: t.String(),
+        price: t.Numeric({ minimum: 0 }),
       }),
     },
   },
@@ -35,6 +33,18 @@ export const schemas = {
     item: {
       params: t.Object({
         id: t.Numeric({ minimum: 1 }),
+      }),
+    },
+  },
+
+  put: {
+    item: {
+      params: t.Object({
+        id: t.Numeric({ minimum: 1 }),
+      }),
+      body: t.Object({
+        featuresCode: t.String(),
+        description: t.String(),
       }),
     },
   },

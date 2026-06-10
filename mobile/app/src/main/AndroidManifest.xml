@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"  />
 
     <application
+        android:name=".Config.InventoryMaster"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,7 +19,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.InventoryMaster">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Modules.Main.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
@@ -28,7 +29,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.ItemsActivity"
+            android:name=".Modules.Boxes.BoxManageActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".Modules.Items.ItemAddActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".Modules.ItemInstances.ItemInstanceActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".Modules.ItemInstances.ItemInstanceManageActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".Modules.Boxes.BoxSelectActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".Modules.Items.ItemManageActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
     </application>

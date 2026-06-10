@@ -6,17 +6,14 @@ export const itemsRoutes = new Elysia({ prefix: "/items" })
   .get(
     "/",
     async ({ query }) => {
-      const page = Number(query.page) || 1;
-      const limit = Number(query.limit) || 30;
-
+      const page = Number(query.page);
+      const limit = Number(query.limit);
       const search = query.search || "";
-      const category = query.category || "";
 
       const result = await itemsService.getMany({
         page,
         limit,
         search,
-        category,
       });
 
       return {
@@ -69,5 +66,21 @@ export const itemsRoutes = new Elysia({ prefix: "/items" })
     },
     {
       params: schemas.delete.item.params,
+    },
+  )
+  
+  .put(
+    "/:id",
+    async ({ params, body, status }) => {
+      const id = params.id;
+
+      const result = await itemsService.updateOne({ id, ...body });
+      if(!result) return status("Conflict");
+
+      return result;
+    },
+    {
+      params: schemas.put.item.params,
+      body: schemas.put.item.body,
     },
   );

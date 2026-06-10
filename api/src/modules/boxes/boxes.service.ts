@@ -10,20 +10,30 @@ export const boxesService = {
   getMany: async (ctx: {
     page: number;
     limit: number;
-    itemId?: number;
-    shelfId?: number;
+    sequenceNumber?: number;
   }) => {
     const result = await fetchMany(ctx);
+    const tmp = result.data.map(box => ({
+      ...box,
+      code: `BOX${String(box.id).padStart(3, "0")}`
+    }));
+    result.data = tmp;
     return result;
   },
 
   getOne: async ({ id }: { id: number }) => {
     const result = await fetchOne({ id });
-    return result;
+    if(!result) return null;
+
+    const tmp = {
+      ...result,
+      code: `BOX${String(result.id).padStart(3, "0")}`
+    }
+    return tmp;
   },
 
-  addOne: async (ctx: { shelfId?: number }) => {
-    const result = await insertOne(ctx);
+  addOne: async () => {
+    const result = await insertOne();
     return result;
   },
 
@@ -36,4 +46,6 @@ export const boxesService = {
     const result = await updateOneLocation(ctx);
     return result;
   },
+
+
 };

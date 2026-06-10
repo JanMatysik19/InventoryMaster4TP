@@ -12,9 +12,17 @@ export const itemInstancesService = {
     limit: number;
     itemId?: number;
     boxId?: number;
+    sequenceNumber?: number;
   }) => {
     const result = await fetchMany(ctx);
-    return result;
+    const tmp = result.data.map(i => ({
+      ...i,
+      boxCode: i.boxId && `BOX${String(i.boxId).padStart(3, "0")}`
+    }));
+    return {
+      data: tmp,
+      total: result.total
+    };
   },
 
   getOne: async ({ id }: { id: number }) => {

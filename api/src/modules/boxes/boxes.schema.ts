@@ -6,8 +6,8 @@ export const schemas = {
       query: t.Optional(
         t.Object({
           page: t.Optional(t.Numeric({ minimum: 1, default: 1 })),
-          limit: t.Optional(t.Numeric({ minimum: 1, default: 30 })),
-          shelfId: t.Optional(t.Numeric({ minimum: 1 })),
+          limit: t.Optional(t.Numeric({ minimum: 1, default: 5 })),
+          sequenceNumber: t.Optional(t.Numeric({ minimum: 1, default: undefined })),
         }),
       ),
     },
@@ -15,14 +15,6 @@ export const schemas = {
     box: {
       params: t.Object({
         id: t.Numeric({ minimum: 1 }),
-      }),
-    },
-  },
-
-  post: {
-    box: {
-      body: t.Object({
-        shelfId: t.Optional(t.Numeric({ minimum: 1 })),
       }),
     },
   },

@@ -3,6 +3,8 @@ package com.example.inventorymaster.Models;
 import android.util.Log;
 
 import com.example.inventorymaster.BuildConfig;
+import com.example.inventorymaster.Utils.CallbackBuilder;
+
 import java.util.function.Consumer;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,8 +32,12 @@ public class HttpClientModel {
         return retrofit.create(serviceClass);
     }
 
-    public void errorHandle(String error) {
+    public void handleError(String error) {
         if(errorHandler != null) errorHandler.accept(error);
+    }
+
+    public void handleError(CallbackBuilder.CallbackStatus status) {
+        if(errorHandler != null && status != null) errorHandler.accept(status.getMessage());
     }
 
     public void setErrorHandler(Consumer<String> handler) {

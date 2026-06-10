@@ -6,13 +6,14 @@ export const boxesRoutes = new Elysia({ prefix: "/boxes" })
   .get(
     "/",
     async ({ query }) => {
-      const page = Number(query.page) || 1;
-      const limit = Number(query.limit) || 30;
-      const number = 
+      const page = Number(query.page);
+      const limit = Number(query.limit);
+      const sequenceNumber = Number(query.sequenceNumber) || undefined;
 
       const result = await boxesService.getMany({
         page,
         limit,
+        sequenceNumber
       });
 
       return {
@@ -42,14 +43,11 @@ export const boxesRoutes = new Elysia({ prefix: "/boxes" })
 
   .post(
     "/",
-    async ({ body, status }) => {
-      const result = await boxesService.addOne(body);
+    async ({ status }) => {
+      const result = await boxesService.addOne();
       if (!result) return status("Conflict");
 
       return status("Created", result);
-    },
-    {
-      body: schemas.post.box.body,
     },
   )
 

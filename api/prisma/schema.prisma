@@ -16,32 +16,18 @@ datasource db {
 
 model Box {
   id      Int    @id @default(autoincrement())
-  code    String @unique // BOX001
 
   itemInstances ItemInstance[]
 
   createdAt DateTime @default(now())
 }
 
-model Category {
-  id   Int    @id @default(autoincrement())
-  code String @unique
-
-  items Item[]
-
-  createdAt DateTime @default(now())
-}
-
 model Item {
-  id          Int    @id @default(autoincrement())
-  sku         String // FOC-OM4LSZH
-  description String
-  unit        String @default("pcs")
+  id            Int    @id @default(autoincrement())
+  description   String
+  featuresCode  String
 
-  categoryId Int
-  category   Category @relation(fields: [categoryId], references: [id])
-
-  featuresCode String
+  price Decimal @db.Decimal(10, 2)
 
   itemInstances ItemInstance[]
 
@@ -54,10 +40,10 @@ model ItemInstance {
   sequenceNumber Int
 
   itemId Int
-  item   Item @relation(fields: [itemId], references: [id])
+  item   Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
 
   boxId Int?
-  box   Box? @relation(fields: [boxId], references: [id])
+  box   Box? @relation(fields: [boxId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now())
 

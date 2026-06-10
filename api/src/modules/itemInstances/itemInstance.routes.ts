@@ -11,12 +11,14 @@ export const itemInstancesRoutes = new Elysia({ prefix: "/item-instances" })
 
       const itemId = query.itemId;
       const boxId = query.boxId;
+      const sequenceNumber = Number(query.sequenceNumber) || undefined;
 
       const result = await itemInstancesService.getMany({
         page,
         limit,
         itemId,
         boxId,
+        sequenceNumber
       });
 
       return {

@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/itemsAddCv"
+            android:id="@+id/itemAddCv"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             app:cardBackgroundColor="?attr/colorPrimary"
@@ -84,19 +84,18 @@
             android:id="@+id/itemsSearchCv"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             app:cardBackgroundColor="?attr/cardBackgroundColor"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/itemsCategorySearchCv"
-            app:layout_constraintTop_toBottomOf="@+id/itemsAddCv">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemAddCv">
 
             <ImageView
                 android:id="@+id/itemsSearchIv"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/feature_search"
@@ -106,7 +105,7 @@
                 android:id="@+id/itemsSearchTe"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginLeft="65dp"
+                android:layout_marginLeft="85dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@null"
@@ -116,36 +115,6 @@
                 android:textColor="?attr/colorOnBackground" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/itemsCategorySearchCv"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="?attr/cardBackgroundColor"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemsAddCv">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12.5dp"
-                android:layout_marginTop="5dp"
-                android:tint="@color/colorPrimary"
-                app:srcCompat="@drawable/category" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="43dp"
-                android:text="Kategoria"
-                android:textAlignment="center"
-                android:textColor="?attr/colorOnBackground"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

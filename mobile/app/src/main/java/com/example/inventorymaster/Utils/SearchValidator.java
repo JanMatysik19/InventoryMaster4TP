@@ -5,10 +5,6 @@ public class SearchValidator {
         return false;
     }
 
-    public static boolean validateCategorySearch(String data) {
-        return false;
-    }
-
     public static boolean validateItemInstanceSearch(String data) {
         return false;
     }
